@@ -10,6 +10,9 @@ class Attendance extends Model
     protected $collection = 'attendances';
 
     protected $fillable = [
-        'student_id', 'date', 'status'
+        'student_id',
+        'status', // "Có mặt" hoặc "Vắng"
+        'date',   // Y-m-d
+        'attendance_time'
     ];
 }

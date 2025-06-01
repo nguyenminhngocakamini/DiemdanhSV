@@ -37,3 +37,6 @@ Route::put('/students/{id}', [StudentController::class, 'update'])->name('studen
 Route::delete('/students/{id}', [StudentController::class, 'destroy'])->name('students.destroy');
 Route::get('/students/{id}', [StudentController::class, 'show'])->name('students.show');
 Route::get('/statistics', [StatisticsController::class, 'index'])->name('statistics.index');
+
+use App\Http\Controllers\AttendanceStatisticsController;
+Route::get('/attendance/statistics', [AttendanceStatisticsController::class, 'index'])->name('statistics.index');

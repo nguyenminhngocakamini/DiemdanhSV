@@ -14,14 +14,16 @@ class AttendanceController extends Controller
 
     public function store(Request $request)
     {
-        foreach ($request->input('attendances') as $studentId => $status) {
+        foreach ($request->attendances as $studentId => $status) {
             Attendance::create([
                 'student_id' => $studentId,
-                'date' => date('Y-m-d'),
-                'status' => $status
+                'status' => $status,
+                'date' => now()->format('Y-m-d'),
+                'attendance_time' => now(),
             ]);
         }
 
-        return redirect()->route('attendance.index')->with('success', 'Điểm danh thành công!');
+        return redirect()->back()->with('success', 'Đã lưu điểm danh thành công!');
     }
+
 }

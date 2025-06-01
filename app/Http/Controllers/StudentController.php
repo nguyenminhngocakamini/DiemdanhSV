@@ -41,6 +41,13 @@ class StudentController extends Controller
 
         return redirect()->route('students.index')->with('success', 'Cập nhật thành công!');
     }
+    public function destroy($id)
+    {
+        $student = Student::findOrFail($id);
+        $student->delete();
+
+        return redirect()->route('students.index')->with('success', 'Xóa sinh viên thành công!');
+    }
 
 
 
