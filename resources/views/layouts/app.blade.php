@@ -8,7 +8,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">Điểm danh SV</a>
+            <a class="navbar-brand" href="{{ route('home') }}">Điểm danh Sinh Viên DH22PM</a>
         </div>
     </nav>
 

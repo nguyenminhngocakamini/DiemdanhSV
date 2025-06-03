@@ -23,6 +23,7 @@ class AttendanceStatisticsController extends Controller
             $absent = $records->where('status', 'Vắng')->count();
             return [
                 'id' => $student->_id,
+                'mssv' => $student->student_code,
                 'name' => $student->full_name,
                 'class' => $student->class_id,
                 'present' => $present,

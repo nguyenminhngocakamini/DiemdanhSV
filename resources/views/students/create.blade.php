@@ -1,9 +1,10 @@
+
 @extends('layouts.app')
 
 @section('content')
 <div class="container mt-4">
     <h2 class="mb-4">➕ Thêm sinh viên mới</h2>
-
+    
     <form method="POST" action="{{ route('students.store') }}">
         @csrf
         <div class="mb-3">
@@ -19,11 +20,16 @@
             <input type="text" name="class_id" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label>Giới tính</label>
-            <select name="gender" class="form-control" required>
-                <option value="Nam">Nam</option>
-                <option value="Nữ">Nữ</option>
-            </select>
+            <label>Giới tính : </label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="genderMale" value="Nam" {{ old('gender') == 'Nam' ? 'checked' : '' }} required>
+                <label class="form-check-label" for="genderMale">Nam</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="Nữ" {{ old('gender') == 'Nữ' ? 'checked' : '' }} required>
+                <label class="form-check-label" for="genderFemale">Nữ</label>
+            </div>
+
         </div>
         <div class="mb-3">
             <label>Ngày sinh</label>
@@ -34,5 +40,7 @@
         <a href="{{ route('home') }}" class="btn btn-secondary">Quay về trang chủ </a>
         
     </form>
+
 </div>
+
 @endsection

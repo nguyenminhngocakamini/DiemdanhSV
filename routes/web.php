@@ -40,3 +40,5 @@ Route::get('/statistics', [StatisticsController::class, 'index'])->name('statist
 
 use App\Http\Controllers\AttendanceStatisticsController;
 Route::get('/attendance/statistics', [AttendanceStatisticsController::class, 'index'])->name('statistics.index');
+
+

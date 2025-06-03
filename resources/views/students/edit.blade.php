@@ -21,11 +21,16 @@
             <input type="text" name="class_id" value="{{ $student->class_id }}" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label>Giới tính</label>
-            <select name="gender" class="form-control" required>
-                <option value="Nam" {{ $student->gender == 'Nam' ? 'selected' : '' }}>Nam</option>
-                <option value="Nữ" {{ $student->gender == 'Nữ' ? 'selected' : '' }}>Nữ</option>
-            </select>
+            <label>Giới tính : </label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="genderMale" value="Nam" {{ old('gender') == 'Nam' ? 'checked' : '' }} required>
+                <label class="form-check-label" for="genderMale">Nam</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="Nữ" {{ old('gender') == 'Nữ' ? 'checked' : '' }} required>
+                <label class="form-check-label" for="genderFemale">Nữ</label>
+            </div>
+
         </div>
         <div class="mb-3">
             <label>Ngày sinh</label>
