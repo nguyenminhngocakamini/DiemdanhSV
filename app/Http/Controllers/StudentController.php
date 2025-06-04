@@ -9,38 +9,42 @@ class StudentController extends Controller
 
 
     public function index()
-    {
-        $students = Student::all();
-        return view('students.index', compact('students'));
-    }
+{
+    $students = Student::all();
+    return view('admin.home', compact('students'));
+}
+
+public function store(Request $request)
+{
+    Student::create($request->only([
+        'student_code', 'full_name', 'class_id', 'gender', 'dob'
+    ]));
+    return redirect()->route('students.index')
+    ->with('success', 'Thêm sinh viên thành công!')
+    ->with('activeTab', 'studentManagement');
+
+}
+
+public function update(Request $request, $id)
+{
+    $student = Student::findOrFail($id);
+    $student->update($request->only([
+        'student_code', 'full_name', 'class_id', 'gender', 'dob'
+    ]));
+    return redirect()->route('students.index')->with('success', 'Cập nhật thành công!');
+}
 
     public function create()
     {
-        return view('students.create');
+        return view('admin.students.create');
     }
-    public function store(Request $request)
-    {
-        Student::create($request->only([
-            'student_code', 'full_name', 'class_id', 'gender', 'dob'
-        ]));
-
-        return redirect()->route('students.index')->with('success', 'Thêm sinh viên thành công!');
-    }
-
+    
     public function edit($id)
     {
         $student = Student::findOrFail($id);
         return view('students.edit', compact('student'));
     }
-    public function update(Request $request, $id)
-    {
-        $student = Student::findOrFail($id);
-        $student->update($request->only([
-            'student_code', 'full_name', 'class_id', 'gender', 'dob'
-        ]));
-
-        return redirect()->route('students.index')->with('success', 'Cập nhật thành công!');
-    }
+    
     public function destroy($id)
     {
         $student = Student::findOrFail($id);
