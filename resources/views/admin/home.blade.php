@@ -177,7 +177,7 @@
     <ul class="nav flex-column">
       <li class="nav-item">
         <a class="nav-link active" href="#tkbManagement" data-bs-toggle="tab" data-bs-target="#tkbManagement">
-          <i class="fas fa-calendar-alt"></i> <span>Quản Lý TKB</span>
+          <i class="fas fa-calendar-alt"></i> <span>Quản Lý Môn Học</span>
         </a>
       </li>
       <li class="nav-item">
@@ -337,7 +337,8 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($course->students as $index => $student)
+        @foreach (is_array($course->students) || is_object($course->students) ? $course->students : [] as $index => $student)
+ 
           <tr>
             <td>{{ $index + 1 }}</td>
             <td>{{ $student->full_name }}</td>
