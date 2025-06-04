@@ -17,4 +17,5 @@ class Course extends Model
         'room',
         'semester'
     ];
+    
 }

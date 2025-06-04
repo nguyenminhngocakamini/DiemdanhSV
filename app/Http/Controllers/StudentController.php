@@ -2,57 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Student;
+use Illuminate\Http\Request;
+
 class StudentController extends Controller
 {
-
-
     public function index()
-{
-    $students = Student::all();
-    return view('admin.home', compact('students'));
-}
-
-public function store(Request $request)
-{
-    Student::create($request->only([
-        'student_code', 'full_name', 'class_id', 'gender', 'dob'
-    ]));
-    return redirect()->route('students.index')
-    ->with('success', 'Thêm sinh viên thành công!')
-    ->with('activeTab', 'studentManagement');
-
-}
-
-public function update(Request $request, $id)
-{
-    $student = Student::findOrFail($id);
-    $student->update($request->only([
-        'student_code', 'full_name', 'class_id', 'gender', 'dob'
-    ]));
-    return redirect()->route('students.index')->with('success', 'Cập nhật thành công!');
-}
+    {
+        $students = Student::all();
+        return view('dashboard.students.index', compact('students'));
+    }
 
     public function create()
     {
-        return view('admin.students.create');
+        return view('dashboard.students.create');
     }
-    
-    public function edit($id)
+
+    public function store(Request $request)
     {
-        $student = Student::findOrFail($id);
-        return view('students.edit', compact('student'));
+        Student::create($request->all());
+        return redirect()->route('dashboard.students.index');
     }
-    
-    public function destroy($id)
+
+    public function edit(Student $student)
     {
-        $student = Student::findOrFail($id);
+        return view('dashboard.students.edit', compact('student'));
+    }
+
+    public function update(Request $request, Student $student)
+    {
+        $student->update($request->all());
+        return redirect()->route('dashboard.students.index');
+    }
+
+    public function destroy(Student $student)
+    {
         $student->delete();
-
-        return redirect()->route('students.index')->with('success', 'Xóa sinh viên thành công!');
+        return redirect()->route('dashboard.students.index');
     }
-
-
-
 }
+?>

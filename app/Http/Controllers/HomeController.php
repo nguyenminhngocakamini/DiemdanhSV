@@ -12,8 +12,8 @@ class HomeController extends Controller
     }
 
 
-    protected $allowedGroups = ['thoikhoabieu', 'diemdanh']; // Ví dụ các group hợp lệ
-    protected $allowedPages = ['index']; // Ví dụ các page hợp lệ
+    protected $allowedGroups = ['attendances', 'courses','students']; // Ví dụ các group hợp lệ
+    protected $allowedPages = ['index','create','edit']; // Ví dụ các page hợp lệ
 
     public function pages($group, $page)
     {
@@ -28,7 +28,7 @@ class HomeController extends Controller
         }
 
         // Đường dẫn view
-        $view = "trangchu.{$group}.{$page}";
+        $view = "dashboard.{$group}.{$page}";
 
         if (view()->exists($view)) {
             return view($view);

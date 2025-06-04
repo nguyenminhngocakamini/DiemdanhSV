@@ -16,13 +16,16 @@ class Attendance extends Model
         'status'
     ];
 
-    public function student()
-    {
-        return $this->belongsTo(Student::class, 'student_id', 'student_code');
-    }
+  public function student()
+{
+    return $this->belongsTo(Student::class, 'student_id', 'student_code');
+}
 
+
+      // Khai báo quan hệ belongsTo Course dựa trên course_code
     public function course()
     {
         return $this->belongsTo(Course::class, 'course_code', 'course_code');
     }
+
 }
